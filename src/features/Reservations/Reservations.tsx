@@ -7,11 +7,11 @@ import Reservation from "./Reservation";
 export default observer(function Reservations() {
 
     const {reservationStore} = useStore();
-    const {loadReservations, reservationList} = reservationStore;
+    const {loadReservationsByCartId, reservationList} = reservationStore;
 
     useEffect(() => {
-        if(reservationList.length === 0) loadReservations()
-    }, [loadReservations, reservationList])
+        if(reservationList.length === 0) loadReservationsByCartId()
+    }, [loadReservationsByCartId, reservationList])
 
 
     return (

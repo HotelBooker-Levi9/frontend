@@ -9,23 +9,11 @@ export default function Register() {
 
 
     const [clientValues, setClientValues] = useState({
-        id: '',
-        name: '',
-        address: '',
-        postalCode: '',
-        city: ''
+        id: ''
     }); 
 
     function handleSubmit(event: any) {
         event?.preventDefault();
-        //const selected = 
-        let newClient = {
-            ...clientValues, 
-            id: '',
-            country: "Serbia"
-            //selectedCountry
-        }
-        //createClient(newClient); 
     }
 
     return (

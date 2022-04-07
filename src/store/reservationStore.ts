@@ -6,17 +6,16 @@ import reservationService from "../service/reservationService";
 export default class ReservationStore {
     reservationRegistry = new Map<string, ReservationModel>();
     reservationList: ReservationModel[] = []; 
+    cartId: number = 1;
 
     constructor() {
         makeAutoObservable(this)
     }
 
-    //async?
+
     loadReservations = async () => { 
-        //service treba da vraca promise, i da bude async
         try {
             const list = await reservationService.getAll();
-            console.log(list)
             
             runInAction(() => {
                 this.reservationList = list;
@@ -24,5 +23,18 @@ export default class ReservationStore {
         } catch (error) {
             console.log(error);
         }
-    }   
+    }  
+    
+    
+    loadReservationsByCartId = async () => { 
+        try {
+            const list = await reservationService.getByCartId(this.cartId);
+
+            runInAction(() => {
+                this.reservationList = list;
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

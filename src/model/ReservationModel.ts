@@ -9,8 +9,6 @@ export interface ReservationModel {
     guestNumber: number;
     isCanceled: boolean;
     hotelId: number;
-    cart: CartModel;
-    invoice: InvoiceModel;
 }
 
 export class ReservationModel implements ReservationModel {
@@ -22,8 +20,6 @@ export class ReservationModel implements ReservationModel {
         this.guestNumber = reservation.guestNumber;
         this.isCanceled = reservation.isCanceled;
         this.hotelId = reservation.hotelId;
-        this.cart = reservation.cart;
-        this.invoice = reservation.invoice;
     }
 }
 
@@ -35,8 +31,6 @@ export class ReservationFormValues {
     guestNumber: number = 0;
     isCanceled: boolean = false;
     hotelId: number = 0;
-    cart: CartModel = new CartModel();
-    invoice: InvoiceModel = new InvoiceModel();
 
     constructor(reservation? : ReservationFormValues) {
         if(reservation) {
@@ -47,8 +41,6 @@ export class ReservationFormValues {
             this.guestNumber = reservation.guestNumber;
             this.isCanceled = reservation.isCanceled;
             this.hotelId = reservation.hotelId;
-            this.cart = reservation.cart;
-            this.invoice = reservation.invoice;
         }
     }
 }

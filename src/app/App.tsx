@@ -10,14 +10,9 @@ import Header from './Header';
 
 function App() {
 
-  const authorizedRoutes = (<Switch> 
-    {/* <Route path='/login' element={Login}/> */}
-  </Switch>)
+  const authorizedRoutes = (<Switch></Switch>)
 
-  const unauthorizedRoutes = (<Switch>
-        {/* <Route path='/login' element={Login}/> */}
-        {/* <Route path='/register' element={Register}/> */}
-  </Switch>)
+  const unauthorizedRoutes = (<Switch></Switch>)
 
   const ifAuthorized = false;
 
@@ -30,7 +25,6 @@ function App() {
             <Route exact path='/reservations' component={Reservations}/>
             <Route exact path='/hotels' component={Hotels}/>
           </Switch>
-          {/* <Login/> */}
         <Footer />
     </>
   );
