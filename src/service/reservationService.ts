@@ -16,7 +16,7 @@ const requests = {
 
 const reservationService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ReservationModel[]>('/reservations/')),
+    getAll: async () => await Promise.resolve(requests.get<ReservationModel[]>('/reservations')),
 
     getByCartId: async (id: number) => await Promise.resolve(requests.get<ReservationModel[]>(`/reservations/cartId/${id}`))
 

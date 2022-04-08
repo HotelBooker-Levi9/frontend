@@ -15,19 +15,11 @@ export default class HotelStore {
         makeAutoObservable(this)
     }
 
-    //async?
     loadHotels = async () => { 
-        //service treba da vraca promise, i da bude async
-        console.log("Dobavlja hotele!");
         try {
             const list = [... await hotelService.getAll()];
-            console.log(this.hotelList);
-
-            //const newList: HotelModel[] = [];
-            
 
             runInAction(() => {
-                console.log("Dodeljuje hotele hotelListi!");
                 this.hotelList = toJS(list);
                 console.log(this.hotelList);
             

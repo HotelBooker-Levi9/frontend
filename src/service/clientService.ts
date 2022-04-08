@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { ClientModel } from "../model/ClientModel";
 
 
-//axios.defaults.baseURL = 'http://localhost:8765/biloKojaPutanja';
+axios.defaults.baseURL = 'http://localhost:8765/';
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
 
@@ -15,9 +15,9 @@ const requests = {
 
 const clientService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('/cients')),
+    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('/clients')),
 
-    createOne: async (client: ClientModel) => await Promise.resolve(requests.post<void>('/clients', client)),
+    register: async (client: ClientModel) => await Promise.resolve(requests.post<void>('/clients/register', client)),
 
 }
 
