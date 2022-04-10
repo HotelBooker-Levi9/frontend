@@ -3,7 +3,7 @@ import { HotelModel } from "../model/HotelModel";
 import { ReservationModel } from "../model/ReservationModel";
 
 
-axios.defaults.baseURL = 'http://localhost:8765/';
+//axios.defaults.baseURL = 'http://localhost:8765/';
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
 
@@ -16,9 +16,9 @@ const requests = {
 
 const reservationService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ReservationModel[]>('/reservations')),
+    getAll: async () => await Promise.resolve(requests.get<ReservationModel[]>('http://localhost:8765/reservations')),
 
-    getByCartId: async (id: number) => await Promise.resolve(requests.get<ReservationModel[]>(`/reservations/cartId/${id}`))
+    getByCartId: async (id: number) => await Promise.resolve(requests.get<ReservationModel[]>(`http://localhost:8765/reservations/cartId/${id}`))
 
 }
 

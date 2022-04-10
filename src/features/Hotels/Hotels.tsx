@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useStore } from "../../store/store";
 import Reservation from "../Reservations/Reservation";
 import Hotel from "./Hotel";
+import Search from "./Search";
+
 
 
 
@@ -18,6 +20,7 @@ export default observer(function Hotels() {
 
     return (
         <div style={{ textAlign: "center"}}>
+            <Search></Search>
             <table className="table" style={{width: "70%"}}>
                 <thead className="thead-dark">
                         <tr>

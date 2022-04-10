@@ -12,9 +12,10 @@ export default class ClientStore {
 
     registerClient = async (client: ClientModel) => {
         console.log("REGISTRACIJA");
-        
+        console.log(client);
         try {
-            await clientService.register(client);
+            let response = await clientService.register(client);
+            console.log(response);
         } catch (error) {
             console.log(error);
         }

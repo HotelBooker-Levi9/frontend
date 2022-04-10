@@ -23,17 +23,12 @@ export default observer(function Register() {
         event?.preventDefault();
 
         let newClient = new ClientModel();
-        newClient.id = "2";
+        newClient.id = 0;
         newClient.username = clientValues.username;
         newClient.name = clientValues.name;
         newClient.surname = clientValues.surname;
         newClient.email = clientValues.email;
         newClient.password = clientValues.password;
-        newClient.isDeleted = false;
-        newClient.cartId = "1";
-        newClient.isBlocked = false;
-
-        console.log(newClient);
 
         registerClient(newClient);
     }
@@ -93,7 +88,7 @@ export default observer(function Register() {
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <i className="fas fa-lock fa-lg me-3 fa-fw"></i>
                                     <div className="form-outline flex-fill mb-0">
-                                    <input type="password" id="passwordId" className="form-control" value={clientValues.password} name='password' onChange={handleInputChange}/>
+                                    <input type="text" id="passwordId" className="form-control" value={clientValues.password} name='password' onChange={handleInputChange}/>
                                     <label className="form-label" htmlFor="form3Example4c">Password</label>
                                     </div>
                                 </div>

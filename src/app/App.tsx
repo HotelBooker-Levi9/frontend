@@ -7,6 +7,7 @@ import Reservations from '../features/Reservations/Reservations';
 import './App.css';
 import Footer from './Footer';
 import Header from './Header';
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
 
@@ -25,7 +26,7 @@ function App() {
             <Route exact path='/reservations' component={Reservations}/>
             <Route exact path='/hotels' component={Hotels}/>
           </Switch>
-        <Footer />
+        {/* <Footer /> */}
     </>
   );
 }
