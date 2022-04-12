@@ -20,12 +20,14 @@ function App() {
   return (
     <>
         <Header />
-          <Switch> 
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/register' component={Register}/>
-            <Route exact path='/reservations' component={Reservations}/>
-            <Route exact path='/hotels' component={Hotels}/>
-          </Switch>
+          <div className='body-wrapper'>
+            <Switch> 
+              <Route exact path='/login' component={Login}/>
+              <Route exact path='/register' component={Register}/>
+              <Route exact path='/reservations' component={Reservations}/>
+              <Route exact path='/hotels' component={Hotels}/>
+            </Switch>
+          </div>
         {/* <Footer /> */}
     </>
   );

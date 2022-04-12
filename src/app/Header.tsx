@@ -16,7 +16,7 @@ export default function Header() {
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item active">
                             <Link className="nav-link" to="#">HotelBooker</Link>
                         </li>
@@ -24,9 +24,10 @@ export default function Header() {
                             <Link className="nav-link" to="/destinations">Destinations</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/hotels">Hotels</Link>
+                            <Link className="nav-link" to="/hotels">Arrangements</Link>
                         </li>
-
+                    </ul>
+                    <ul className="navbar-nav">
                         <li style={{float: "right", paddingRight: "10px", right: "0"}}>
                             <Dropdown >
                                 <Dropdown.Toggle variant="success" id="dropdown-basic">

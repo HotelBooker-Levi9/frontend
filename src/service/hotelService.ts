@@ -4,6 +4,7 @@ import { SearchHotelModel } from "../model/SearchHotel";
 
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+// axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
@@ -19,7 +20,7 @@ let searchHotelsList: HotelModel[];
 
 const hotelService = {
 
-    getAll: async () => await Promise.resolve(requests.get<HotelModel[]>('http://localhost:8200/hotels/all')),
+    getAll: async () => await Promise.resolve(requests.get<HotelModel[]>('http://localhost:8765/hotels/all')),
     
     getSearchHotels() {
         return searchHotelsList;
@@ -28,7 +29,7 @@ const hotelService = {
     searchHotelsByParameters: async (hotelName: string, pricePerDay: number, cityName: string, destinationName: string, checkInDate: string, 
             checkOutDate: string, guestNum: number) => { 
                 
-                return await axios.get<HotelModel[]>('http://localhost:8200/hotels/searchParams', {
+                return await axios.get<HotelModel[]>('http://localhost:8765/hotels/searchParams', {
         params : {hotelName: hotelName, pricePerDay: pricePerDay, cityName: cityName, destinationName: destinationName, 
             checkInDate: checkInDate, checkOutDate: checkOutDate, guestNum: guestNum}
         })
