@@ -1,4 +1,6 @@
-export interface HotelModel {
+import { CityModel } from "./CityModel";
+
+export interface EditHotelModel {
     id: number;
     name: string;
     imageUrl: string;
@@ -6,12 +8,11 @@ export interface HotelModel {
     pricePerDay: number;
     capacity: number;
     isDeleted: boolean;
-    cityName: string;
-    destinationName: string;
+    cityDTO: CityModel;
 }
 
-export class HotelModel implements HotelModel {
-    contructor(hotel: HotelModel) {
+export class EditHotelModel implements EditHotelModel {
+    contructor(hotel: EditHotelModel) {
         this.id = hotel.id;
         this.name = hotel.name;
         this.imageUrl = hotel.imageUrl;
@@ -19,12 +20,11 @@ export class HotelModel implements HotelModel {
         this.pricePerDay = hotel.pricePerDay;
         this.capacity = hotel.capacity;
         this.isDeleted = hotel.isDeleted;
-        this.cityName = hotel.cityName;
-        this.destinationName = hotel.destinationName;
+        this.cityDTO = hotel.cityDTO;
     }
 }
 
-export class HotelFormValues {
+export class EditHotelFormValues {
     id: number = 0;
     name: string = '';
     imageUrl: string = '';
@@ -32,10 +32,9 @@ export class HotelFormValues {
     pricePerDay: number = 0;
     capacity: number = 0;
     isDeleted: boolean = false;
-    cityName: string = '';
-    destinationName: string = '';
+    cityDTO?: CityModel = undefined;
 
-    constructor(hotel? : HotelFormValues) {
+    constructor(hotel? : EditHotelFormValues) {
         if(hotel) {
             this.id = hotel.id;
             this.name = hotel.name;
@@ -44,8 +43,7 @@ export class HotelFormValues {
             this.pricePerDay = hotel.pricePerDay;
             this.capacity = hotel.capacity;
             this.isDeleted = hotel.isDeleted;
-            this.cityName = hotel.cityName;
-            this.destinationName = hotel.destinationName;
+            this.cityDTO = hotel.cityDTO;
         }
     }
 }

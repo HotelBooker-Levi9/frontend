@@ -5,6 +5,9 @@ import { toJS } from 'mobx'
 import hotelService from "../service/hotelService";
 import { SearchHotelModel } from "../model/SearchHotel";
 import { format } from 'date-fns';
+import cityService from "../service/cityService";
+import { CityModel } from "../model/CityModel";
+import { EditHotelModel } from "../model/EditHotelModel";
 
 
 
@@ -12,6 +15,9 @@ import { format } from 'date-fns';
 export default class HotelStore {
     hotelRegistry = new Map<string, HotelModel>();
     hotelList: HotelModel[] = []; 
+    citiesList: CityModel[] = [];
+    selectedHotel: HotelModel | undefined;
+    
 
     constructor() {
         makeAutoObservable(this)
@@ -24,7 +30,10 @@ export default class HotelStore {
             runInAction(() => {
                 this.hotelList = toJS(list);
                 console.log(this.hotelList);
-            
+
+                if(!this.selectedHotel) {
+                    this.selectedHotel = this.hotelList.at(1);
+                }
             })
         } catch (error) {
             console.log(error);
@@ -62,5 +71,37 @@ export default class HotelStore {
             console.log(error);
         }
     } 
+
+    loadCities = async () => {
+        try {
+            let response = [... await cityService.getAll()];
+
+            runInAction(() => {
+                this.citiesList = toJS(response);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    updateHotel = async (hotel: EditHotelModel) => {
+        console.log("Update Hotela:");
+        console.log(hotel);
+        try {
+            let response = await hotelService.updateHotel(hotel);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    setSelectedHotel = async (hotel: HotelModel) => {
+        console.log(hotel);
+        this.selectedHotel = hotel;
+
+        runInAction(() => {
+            console.log(this.selectedHotel);
+        })
+    }
         
 }
