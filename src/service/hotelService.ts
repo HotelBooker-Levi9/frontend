@@ -37,6 +37,8 @@ const hotelService = {
 
     updateHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.put<void>('http://localhost:8200/hotels/', hotel)),
 
+    createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>('http://localhost:8200/hotels/addHotel', hotel)),
+
 
 }
 

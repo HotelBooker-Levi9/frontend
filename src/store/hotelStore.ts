@@ -103,5 +103,15 @@ export default class HotelStore {
             console.log(this.selectedHotel);
         })
     }
+
+    createNewHotel = async (hotel: EditHotelModel) => {
+        try {
+            let response = await hotelService.createHotel(hotel);
+            console.log(response);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    
         
 }

@@ -13,13 +13,15 @@ import Search from "./Search";
 export default observer(function Hotels() {
 
     const {hotelStore} = useStore();
-    const {loadHotels, hotelList} = hotelStore;
+    const {loadHotels, hotelList, citiesList, loadCities} = hotelStore;
 
     const [showEdit, setShowEdit] = useState(false);
     const [selectedHotel, setSelectedHotel] = useState<HotelModel>();
 
     useEffect(() => {
         if(hotelList.length === 0) loadHotels()
+
+        if(citiesList.length === 0) loadCities()
     }, [loadHotels, hotelList])
     
     const openEdit = () => {

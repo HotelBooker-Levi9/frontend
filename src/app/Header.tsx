@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 import hotelLogo from "../img/hotelLogo.png";
 import profileLogo from "../img/profileLogo.png"
 
+interface Props {
+    isAuthorized: boolean;
+}
 
-export default function Header() {
+export default function Header({isAuthorized}: Props) {
 
 
     return (
@@ -36,6 +39,9 @@ export default function Header() {
                                 <Dropdown.Menu>
                                     <Dropdown.Item href="/my-account">My Account</Dropdown.Item>
                                     <Dropdown.Item href="/reservations">My reservations</Dropdown.Item>
+                                    {isAuthorized ?
+                                        <Dropdown.Item href="/createHotel">Create new hotel</Dropdown.Item>
+                                    : null}
                                     <Dropdown.Divider />
                                     <Dropdown.Item href="/" style={{backgroundColor: "rgb(255,69,0)"}}>Logout</Dropdown.Item>
                                 </Dropdown.Menu>

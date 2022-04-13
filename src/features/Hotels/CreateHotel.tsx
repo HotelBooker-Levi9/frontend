@@ -1,37 +1,29 @@
-import { observer } from "mobx-react-lite";
 import { ChangeEvent, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { CityModel } from "../../model/CityModel";
 import { EditHotelModel } from "../../model/EditHotelModel";
-import { HotelModel } from "../../model/HotelModel";
 import { useStore } from "../../store/store";
 
 
-interface Props {
-    closeEdit: () => void;
-}
 
-export default observer(function EditHotel(props: Props) {
+export default function CreateHotel() {
 
     const {hotelStore} = useStore();
-    const {loadCities, citiesList, updateHotel, selectedHotel} = hotelStore;
-    const [isDeletedCheck, setIsDeletedCheck] = useState(false);
+    const {loadCities, citiesList, createNewHotel} = hotelStore;
     const [selectedCity, setSelectedCity] = useState<CityModel>();
 
     useEffect(() => {
         if(citiesList.length === 0) loadCities()
-        
-        console.log(selectedHotel?.name);
-    }, [loadCities, citiesList, selectedHotel]);
+    }, [loadCities, citiesList]);
 
 
     const [editHotelValues, setEditHotelValues] = useState({
-        id: selectedHotel!.id,
-        name: selectedHotel!.name,
-        imageUrl: selectedHotel!.imageUrl,
-        description: selectedHotel!.description,
-        pricePerDay: selectedHotel!.pricePerDay,
-        capacity: selectedHotel!.capacity,
+        id: 0,
+        name: '',
+        imageUrl: '',
+        description: '',
+        pricePerDay: 0,
+        capacity: 0,
         isDeleted: false
     }); 
 
@@ -39,35 +31,26 @@ export default observer(function EditHotel(props: Props) {
         event?.preventDefault();
 
         let editHotel = new EditHotelModel();
-        if(selectedHotel) {
-            editHotel.id = selectedHotel.id;
-        }
 
+        editHotel.id = 0;
         editHotel.name = editHotelValues.name;
         editHotel.imageUrl = editHotelValues.imageUrl;
         editHotel.description = editHotelValues.description;
         editHotel.pricePerDay = editHotelValues.pricePerDay;
         editHotel.capacity = editHotelValues.capacity;
-        editHotel.isDeleted = isDeletedCheck;
+        editHotel.isDeleted = editHotelValues.isDeleted;
 
         if(selectedCity) {
             editHotel.cityDTO = selectedCity;
-        } else {
-            editHotel.cityDTO = citiesList.find(x => x.name === selectedHotel?.cityName)!;
         }
 
-        updateHotel(editHotel);
+        createNewHotel(editHotel);
     }
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         const {name, value} = event.target;
         setEditHotelValues({...editHotelValues, [name]: value})
     }
-
-    function deleteHotel() {
-        setIsDeletedCheck(true);
-    }
-
 
     function handleSelectCityChange(event: any){
         event.preventDefault();
@@ -81,7 +64,6 @@ export default observer(function EditHotel(props: Props) {
         }
         
     }
-
 
     return (
         <div>
@@ -108,7 +90,7 @@ export default observer(function EditHotel(props: Props) {
                 </div>
                 <div>
                     <label>City: </label>
-                    <select defaultValue={citiesList.find(x => x.name === selectedHotel?.cityName)?.name} onChange={handleSelectCityChange}>
+                    <select defaultValue={citiesList.find(x => x.id === 1)?.name} onChange={handleSelectCityChange}>
                         <option>Select City</option>
                         {citiesList.map(city => {
                             return <option>{city.name}</option>
@@ -116,10 +98,8 @@ export default observer(function EditHotel(props: Props) {
                         
                     </select>
                 </div>
-                <Button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Save</Button>
-                <Button type="button" className="btn btn-primary" onClick={() => deleteHotel()}>Delete</Button>
-                <Button onClick={() => props.closeEdit()}>Close</Button>
+                <Button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Create</Button>
             </form>
         </div>
     )
-})
+}
