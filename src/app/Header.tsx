@@ -24,7 +24,7 @@ export default function Header({isAuthorized}: Props) {
                             <Link className="nav-link" to="#">HotelBooker</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link" to="/destinations">Destinations</Link>
+                            <Link className="nav-link" to="/top10destinations">Top 10 destinations</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/hotels">Arrangements</Link>
@@ -32,8 +32,8 @@ export default function Header({isAuthorized}: Props) {
                     </ul>
                     <ul className="navbar-nav">
                         <li style={{float: "right", paddingRight: "10px", right: "0"}}>
-                            <Dropdown >
-                                <Dropdown.Toggle variant="success" id="dropdown-basic">
+                            <Dropdown style={{backgroundColor: "gray"}}>
+                                <Dropdown.Toggle style={{backgroundColor: 'rgba(52, 52, 52, 0.8)'}} variant="success" id="dropdown-basic">
                                     <img src={profileLogo} />
                                 </Dropdown.Toggle>
 

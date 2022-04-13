@@ -22,6 +22,8 @@ let searchHotelsList: HotelModel[];
 const hotelService = {
 
     getAll: async () => await Promise.resolve(requests.get<HotelModel[]>('http://localhost:8765/hotels/all')),
+
+    top10: async () => await Promise.resolve(requests.get<HotelModel[]>('http://localhost:8765/hotels/top10')),
     
     getSearchHotels() {
         return searchHotelsList;
