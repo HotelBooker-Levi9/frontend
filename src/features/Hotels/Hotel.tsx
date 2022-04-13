@@ -1,6 +1,7 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { HotelModel } from "../../model/HotelModel";
 import { useStore } from "../../store/store";
 
@@ -41,7 +42,11 @@ export default observer(function Hotel(props: Props) {
                         <Button onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
                         <Button onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
                     </td>
-                : null }       
+                : 
+                    <td>
+                        <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}>Book</Link>
+                    </td>
+                }         
             </tr>
         </>
     )

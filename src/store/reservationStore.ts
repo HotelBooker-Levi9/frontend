@@ -1,5 +1,7 @@
 import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { ReservationModel } from "../model/ReservationModel";
+import { ReservationWithCartModel } from "../model/ReservationWithCartModel";
+import cartService from "../service/cartService";
 import reservationService from "../service/reservationService";
 
 
@@ -33,6 +35,15 @@ export default class ReservationStore {
             runInAction(() => {
                 this.reservationList = toJS(list);
             })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    addToCart = async(reservation: ReservationWithCartModel) => {
+        try {
+            let response = await cartService.addToCart(reservation);
         } catch (error) {
             console.log(error);
         }

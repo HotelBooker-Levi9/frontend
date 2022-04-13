@@ -10,6 +10,7 @@ import Header from './Header';
 import "react-datepicker/dist/react-datepicker.css";
 import { useStore } from '../store/store';
 import CreateHotel from '../features/Hotels/CreateHotel';
+import BookReservation from '../features/Reservations/BookReservation';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
             <Route exact path='/reservations' component={Reservations}/>
             <Route exact path='/hotels' component={Hotels}/>
             <Route exact path='/createHotel' component={CreateHotel}/>
+            <Route exact path='/bookReservation' component={BookReservation}></Route>
           </Switch>
         </div>
         {/* <Footer /> */}
