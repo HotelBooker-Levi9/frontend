@@ -16,12 +16,16 @@ interface Props {
 export default observer(function Hotel(props: Props) {
 
     const {hotelStore, clientStore} = useStore();
-    const {loadHotels, hotelList, setSelectedHotel} = hotelStore;
+    const {loadHotels, hotelList, setSelectedHotel, deleteHotel} = hotelStore;
     const {isAuthorized} = clientStore;
 
     useEffect(() => {
         if(hotelList.length === 0) loadHotels()
     }, [loadHotels, hotelList])
+
+    function deleteHotelFunction(id: number) {
+        deleteHotel(id);
+    }
     
     return (
         <>
@@ -35,6 +39,7 @@ export default observer(function Hotel(props: Props) {
                 { isAuthorized ?
                     <td>
                         <Button onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
+                        <Button onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
                     </td>
                 : null }       
             </tr>

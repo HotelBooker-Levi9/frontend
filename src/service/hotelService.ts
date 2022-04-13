@@ -42,7 +42,7 @@ const hotelService = {
 
     createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>('http://localhost:8200/hotels/addHotel', hotel)),
 
-
+    deleteHotel: async (id: number) => await Promise.resolve(axios.put<void>(`http://localhost:8200/hotels/${id}`)),
 }
 
 export default hotelService;
