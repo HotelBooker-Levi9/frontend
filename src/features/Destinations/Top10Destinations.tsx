@@ -1,28 +1,26 @@
 import { observer } from "mobx-react-lite";
-import { useEffect, useState } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import { HotelModel } from "../../model/HotelModel";
+import { SearchHotelModel } from "../../model/SearchHotel";
 import { useStore } from "../../store/store";
-import Reservation from "../Reservations/Reservation";
-import EditHotel from "./EditHotel";
-import Hotel from "./Hotel";
-import Search from "./Search";
+import EditHotel from "../Hotels/EditHotel";
+import Hotel from "../Hotels/Hotel";
+import Search from "../Hotels/Search";
 
-
-
-
-export default observer(function Hotels() {
+export default observer(function Top10Destinations() {
 
     const {hotelStore} = useStore();
-    const {loadHotels, hotelList, citiesList, loadCities} = hotelStore;
+    const {top10Destinations, loadHotels, top10List, citiesList, loadCities} = hotelStore;
 
     const [showEdit, setShowEdit] = useState(false);
     const [selectedHotel, setSelectedHotel] = useState<HotelModel>();
 
     useEffect(() => {
-        if(hotelList.length === 0) loadHotels()
+        top10Destinations()
 
         if(citiesList.length === 0) loadCities()
-    }, [loadHotels, hotelList])
+    }, [top10Destinations, top10List])
     
     const openEdit = () => {
 		setShowEdit(true);
@@ -38,10 +36,6 @@ export default observer(function Hotels() {
 
     return (
         <div style={{ textAlign: "center"}}>
-            <Search></Search>
-            { showEdit ?
-                <EditHotel closeEdit={closeEdit}></EditHotel>
-            : null}
             <table className="table" style={{width: "90%"}}>
                 <thead className="thead-dark">
                         <tr>
@@ -54,7 +48,7 @@ export default observer(function Hotels() {
                         </tr>
                     </thead>
                     <tbody>
-                        {(hotelList.length > 0) ? hotelList.map((hotel, i) => {
+                        {(top10List.length > 0) ? top10List.map((hotel, i) => {
                             return <Hotel showEdit={showEdit} openEdit={openEdit}  hotel={hotel} hotelId={hotel.id} key={i} />
                         }) : null}
                     </tbody>
@@ -62,4 +56,3 @@ export default observer(function Hotels() {
         </div>
     );
 })
-

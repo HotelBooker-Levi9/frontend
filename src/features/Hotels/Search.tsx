@@ -60,7 +60,7 @@ export default observer(function Search() {
     }
 
     return (
-        <div className="input-group; search-position" >
+        <div className="input-group; search-position" style={{width: "90%"}} >
             <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
                 <Container>
                 <div className="search-rows">
