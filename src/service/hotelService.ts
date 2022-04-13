@@ -5,6 +5,7 @@ import { SearchHotelModel } from "../model/SearchHotel";
 
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+// axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;

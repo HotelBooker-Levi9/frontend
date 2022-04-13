@@ -12,7 +12,7 @@ import { store, StoreContext } from './store/store';
 ReactDOM.render(
   <StoreContext.Provider value={store}>
     <BrowserRouter>
-      <App />
+        <App />
     </BrowserRouter>
   </StoreContext.Provider>,
   document.getElementById('root')

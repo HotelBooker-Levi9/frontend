@@ -5,11 +5,13 @@ import { SearchHotelModel } from "../../model/SearchHotel";
 import { useStore } from "../../store/store";
 import DatePicker from "react-datepicker";
 import { observer } from "mobx-react-lite";
+import { Col, Container, Row } from "react-bootstrap";
+import './Search.css'
 
 export default observer(function Search() {
 
     const {hotelStore} = useStore();
-    const {searchHotelsByParams} = hotelStore;
+    const {searchHotelsByParams, loadHotels} = hotelStore;
 
 
     const [searchValues, setSearchValues] = useState({
@@ -53,40 +55,71 @@ export default observer(function Search() {
         setSearchValues({...searchValues, [name]: value})
     }
 
+    function removeFilter(event: any) {
+        window.location.reload();
+    }
+
     return (
-        <div className="input-group">
+        <div className="input-group; search-position" >
             <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
-                <div className="form-outline">
-                    <input type="search" id="hotelName" className="form-control" value={searchValues.hotelName} name='hotelName' onChange={handleInputChange}/>
-                    <label className="form-label" htmlFor="form1">Name</label>
+                <Container>
+                <div className="search-rows">
+                    <Row >
+                        <Col xs lg="3">
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">Hotel</label>
+                            <input placeholder="Hotel" type="search" id="hotelName" className="form-control" value={searchValues.hotelName} name='hotelName' onChange={handleInputChange}/>
+                        </div>
+                        </Col>                        
+                        <Col xs lg="3">
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">City</label>
+                            <input placeholder="City" type="search" id="city" className="form-control" value={searchValues.cityName} name='cityName' onChange={handleInputChange}/>
+                        </div>
+                        </Col> 
+                        <Col xs lg="3">
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">Destination</label>
+                            <input placeholder="Destination" type="search" id="destination" className="form-control" value={searchValues.destinationName} name='destinationName' onChange={handleInputChange}/>
+                        </div>
+                    </Col>                  
+                    </Row>
                 </div>
-                <div className="form-outline">
-                    <input type="search" id="pricePerDay" className="form-control" value={searchValues.pricePerDay} name='pricePerDay' onChange={handleInputChange}/>
-                    <label className="form-label" htmlFor="form1">Price per day</label>
-                </div>
-                <div className="form-outline">
-                    <input type="search" id="city" className="form-control" value={searchValues.cityName} name='cityName' onChange={handleInputChange}/>
-                    <label className="form-label" htmlFor="form1">City</label>
-                </div>
-                <div className="form-outline">
-                    <input type="search" id="destination" className="form-control" value={searchValues.destinationName} name='destinationName' onChange={handleInputChange}/>
-                    <label className="form-label" htmlFor="form1">Destination</label>
-                </div>
-                <div className="form-outline">
-                    <DatePicker selected={selectedCheckInDate} onChange={(date) => setSelectedCheckInDate(date)}/>
-                    <label className="form-label" htmlFor="form1">CheckIn date</label>
-                </div>
-                <div className="form-outline">
-                    <DatePicker selected={selectedCheckOutDate} onChange={(date) => setSelectedCheckOutDate(date)}/>
-                    <label className="form-label" htmlFor="form1">CheckOut date</label>
-                </div>
-                <div className="form-outline">
-                    <input type="search" id="guestNumber" className="form-control" value={searchValues.guestNum} name='guestNum' onChange={handleInputChange}/>
-                    <label className="form-label" htmlFor="form1">Number of guests</label>
-                </div>
-                <button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
-                    <img className="fas fa-search" src={searchImage} style={{maxHeight: "35px", maxWidth: "35px"}}></img>
-                </button>
+                <Row>
+                    <Col xs lg="2">
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">Price per day</label>
+                            <input placeholder="Price per day" type="search" id="pricePerDay" className="form-control" value={searchValues.pricePerDay} name='pricePerDay' onChange={handleInputChange}/>
+                        </div>
+                    </Col>  
+                    <Col xs lg="2">
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">Number of guests</label>
+                            <input type="search" id="guestNumber" className="form-control" value={searchValues.guestNum} name='guestNum' onChange={handleInputChange}/>                        
+                        </div>
+                    </Col>                  
+                    <Col>
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">CheckIn date</label>
+                            <DatePicker selected={selectedCheckInDate} onChange={(date) => setSelectedCheckInDate(date)}/>                            
+                        </div>
+                    </Col>
+                    <Col>
+                        <div className="form-outline">
+                            <label className="form-label" htmlFor="form1">CheckOut date</label>
+                            <DatePicker selected={selectedCheckOutDate} onChange={(date) => setSelectedCheckOutDate(date)}/>                            
+                        </div>
+                    </Col>                   
+                    <Col>
+                    <button title="Search" type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
+                        <img className="fas fa-search" src={searchImage} style={{maxHeight: "35px", maxWidth: "35px"}}></img>
+                    </button>
+                    </Col>
+                </Row>
+                <Row>
+                    <p style={{color: "blue", cursor: "pointer", textAlign: "left"}} onClick={removeFilter}>Remove filters and list all arrangements</p>
+                </Row>
+                </Container>
             </form>
         </div>
     );

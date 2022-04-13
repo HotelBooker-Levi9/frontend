@@ -20,11 +20,11 @@ function App() {
 
   const unauthorizedRoutes = (<Switch></Switch>)
 
-  const ifAuthorized = false;
 
   return (
     <>
         <Header isAuthorized={isAuthorized}/>
+        <div className='body-wrapper'>
           <Switch> 
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
@@ -32,6 +32,7 @@ function App() {
             <Route exact path='/hotels' component={Hotels}/>
             <Route exact path='/createHotel' component={CreateHotel}/>
           </Switch>
+        </div>
         {/* <Footer /> */}
     </>
   );
