@@ -19,9 +19,12 @@ export default observer(function Hotels() {
     const [selectedHotel, setSelectedHotel] = useState<HotelModel>();
 
     useEffect(() => {
-        if(hotelList.length === 0) loadHotels()
+        if(hotelList.length === 0 && citiesList.length === 0) {
+            loadHotels();
+            loadCities();
+        }
 
-        if(citiesList.length === 0) loadCities()
+        //if(citiesList.length === 0) loadCities()
     }, [loadHotels, hotelList])
     
     const openEdit = () => {
