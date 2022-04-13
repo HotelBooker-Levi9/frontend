@@ -14,7 +14,7 @@ const requests = {
 
 const clientService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('/clients')),
+    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('http://localhost:8000/clients')),
 
     //register: async (client: ClientModel) => await Promise.resolve(requests.post<void>('/clients/register', client)),
 

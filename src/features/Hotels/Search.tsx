@@ -16,10 +16,10 @@ export default observer(function Search() {
 
     const [searchValues, setSearchValues] = useState({
         hotelName: '',
-        pricePerDay: 0,
+        pricePerDay: 500000,
         cityName: '',
         destinationName: '',
-        guestNum: 0
+        guestNum: 2
     }); 
 
     const [selectedCheckInDate, setSelectedCheckInDate] = useState<Date | null>(new Date());

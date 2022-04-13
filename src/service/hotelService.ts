@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { EditHotelModel } from "../model/EditHotelModel";
 import { HotelModel } from "../model/HotelModel";
 import { SearchHotelModel } from "../model/SearchHotel";
 
@@ -34,6 +35,10 @@ const hotelService = {
             checkInDate: checkInDate, checkOutDate: checkOutDate, guestNum: guestNum}
         })
         },
+
+    updateHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.put<void>('http://localhost:8200/hotels/', hotel)),
+
+    createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>('http://localhost:8200/hotels/addHotel', hotel)),
 
 
 }

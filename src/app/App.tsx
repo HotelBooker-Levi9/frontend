@@ -8,26 +8,31 @@ import './App.css';
 import Footer from './Footer';
 import Header from './Header';
 import "react-datepicker/dist/react-datepicker.css";
+import { useStore } from '../store/store';
+import CreateHotel from '../features/Hotels/CreateHotel';
 
 function App() {
 
+  const {clientStore} = useStore();
+  const {isAuthorized} = clientStore;
+ 
   const authorizedRoutes = (<Switch></Switch>)
 
   const unauthorizedRoutes = (<Switch></Switch>)
 
-  const ifAuthorized = false;
 
   return (
     <>
-        <Header />
-          <div className='body-wrapper'>
-            <Switch> 
-              <Route exact path='/login' component={Login}/>
-              <Route exact path='/register' component={Register}/>
-              <Route exact path='/reservations' component={Reservations}/>
-              <Route exact path='/hotels' component={Hotels}/>
-            </Switch>
-          </div>
+        <Header isAuthorized={isAuthorized}/>
+        <div className='body-wrapper'>
+          <Switch> 
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/register' component={Register}/>
+            <Route exact path='/reservations' component={Reservations}/>
+            <Route exact path='/hotels' component={Hotels}/>
+            <Route exact path='/createHotel' component={CreateHotel}/>
+          </Switch>
+        </div>
         {/* <Footer /> */}
     </>
   );
