@@ -15,7 +15,6 @@ export default observer(function EditHotel(props: Props) {
 
     const {hotelStore} = useStore();
     const {loadCities, citiesList, updateHotel, selectedHotel} = hotelStore;
-    const [isDeletedCheck, setIsDeletedCheck] = useState(false);
     const [selectedCity, setSelectedCity] = useState<CityModel>();
 
     useEffect(() => {
@@ -48,7 +47,7 @@ export default observer(function EditHotel(props: Props) {
         editHotel.description = editHotelValues.description;
         editHotel.pricePerDay = editHotelValues.pricePerDay;
         editHotel.capacity = editHotelValues.capacity;
-        editHotel.isDeleted = isDeletedCheck;
+        editHotel.isDeleted = false;
 
         if(selectedCity) {
             editHotel.cityDTO = selectedCity;
@@ -64,10 +63,6 @@ export default observer(function EditHotel(props: Props) {
         setEditHotelValues({...editHotelValues, [name]: value})
     }
 
-    function deleteHotel() {
-        setIsDeletedCheck(true);
-    }
-
 
     function handleSelectCityChange(event: any){
         event.preventDefault();
@@ -78,8 +73,7 @@ export default observer(function EditHotel(props: Props) {
                 setSelectedCity(city);
                 console.log(selectedCity);
             }, 10) 
-        }
-        
+        }   
     }
 
 
@@ -117,7 +111,6 @@ export default observer(function EditHotel(props: Props) {
                     </select>
                 </div>
                 <Button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Save</Button>
-                <Button type="button" className="btn btn-primary" onClick={() => deleteHotel()}>Delete</Button>
                 <Button onClick={() => props.closeEdit()}>Close</Button>
             </form>
         </div>

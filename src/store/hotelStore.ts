@@ -112,6 +112,15 @@ export default class HotelStore {
             console.log(error);
         }
     }
+
+
+    deleteHotel = async (id: number) => {
+        try {
+            let response = await hotelService.deleteHotel(id);
+        } catch (error) {
+            console.log(error);
+        }
+    }
     
         
 }
