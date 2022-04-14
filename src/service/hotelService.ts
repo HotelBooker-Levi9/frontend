@@ -1,10 +1,13 @@
 import axios, { AxiosResponse } from "axios";
+import { arrayExtensions } from "mobx/dist/internal";
 import { EditHotelModel } from "../model/EditHotelModel";
 import { HotelModel } from "../model/HotelModel";
 import { SearchHotelModel } from "../model/SearchHotel";
 
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.put['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.put['Content-Type'] = 'application/json';
 // axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 
@@ -38,11 +41,11 @@ const hotelService = {
         })
         },
 
-    updateHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.put<void>('http://localhost:8200/hotels/', hotel)),
+    updateHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.put<void>('http://localhost:8765/hotels/', hotel)),
 
-    createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>('http://localhost:8200/hotels/addHotel', hotel)),
+    createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>('http://localhost:8765/hotels/addHotel', hotel)),
 
-    deleteHotel: async (id: number) => await Promise.resolve(axios.put<void>(`http://localhost:8200/hotels/${id}`)),
+    deleteHotel: async (id: number) => await Promise.resolve(axios.put<void>(`http://localhost:8765/hotels/${id}`)),
 }
 
 export default hotelService;

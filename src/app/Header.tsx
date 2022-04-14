@@ -38,7 +38,8 @@ export default function Header({isAuthorized}: Props) {
                                 </Dropdown.Toggle>
 
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href="/my-account">My Account</Dropdown.Item>
+                                    <Dropdown.Item href="/my-account">My account</Dropdown.Item>
+                                    <Dropdown.Item href="/my-cart">My cart</Dropdown.Item>
                                     <Dropdown.Item href="/reservations">My reservations</Dropdown.Item>
                                     {isAuthorized ?
                                         <Dropdown.Item href="/createHotel">Create new hotel</Dropdown.Item>
