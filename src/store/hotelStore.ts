@@ -15,6 +15,7 @@ import { EditHotelModel } from "../model/EditHotelModel";
 export default class HotelStore {
     hotelRegistry = new Map<string, HotelModel>();
     hotelList: HotelModel[] = []; 
+    top10List: HotelModel[] = [];
     citiesList: CityModel[] = [];
     selectedHotel: HotelModel | undefined;
     
@@ -33,6 +34,23 @@ export default class HotelStore {
 
                 if(!this.selectedHotel) {
                     this.selectedHotel = this.hotelList.at(1);
+                }
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }  
+
+    top10Destinations = async () => { 
+        try {
+            const list = [... await hotelService.top10()];
+
+            runInAction(() => {
+                this.top10List = toJS(list);
+                console.log(this.top10List);
+
+                if(!this.selectedHotel) {
+                    this.selectedHotel = this.top10List.at(1);
                 }
             })
         } catch (error) {
