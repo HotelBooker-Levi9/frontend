@@ -1,20 +1,25 @@
+import { remove } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { useStore } from "../../store/store";
 import Reservation from "../Reservations/Reservation";
 
 export default observer(function Cart() {
 
     const {reservationStore} = useStore();
-    const {getResFromCart, cartResList} = reservationStore;
+    const {getResFromCart, emptyCart, cartResList} = reservationStore;
 
     useEffect(() => {
         if(cartResList.length === 0) getResFromCart()
-    }, [getResFromCart, cartResList])
+    }, [getResFromCart, emptyCart, cartResList])
 
 
     return (
         <>
+            <div>
+                <Button style={{float: "right", marginBottom: "2%"}} onClick={() => {emptyCart()}}>Empty cart</Button>
+            </div>
             <table className="table">
                 <thead className="thead-dark">
                         <tr>

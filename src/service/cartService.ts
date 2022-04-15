@@ -22,6 +22,8 @@ const cartService = {
     getResFromCart: async (id: number) => await Promise.resolve(requests.get<ReservationWithArrangementModel[]>(`http://localhost:8765/carts/${id}`)),
 
     removeFromCart: async (id: number) => await Promise.resolve(requests.del<void>(`http://localhost:8765/carts/removeItem/${id}`)),
+
+    emptyCart: async (id: number) => await Promise.resolve(requests.del<void>(`http://localhost:8765/carts/emptyCart/${id}`)),
 }
 
 export default cartService;

@@ -71,4 +71,12 @@ export default class ReservationStore {
             console.log(error);
         }
     }
+
+    emptyCart = async() => {
+        try {
+            let response = await cartService.emptyCart(this.cartId);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
