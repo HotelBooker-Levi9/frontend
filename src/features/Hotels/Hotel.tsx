@@ -38,8 +38,9 @@ export default observer(function Hotel(props: Props) {
                 <td>{props.hotel.destinationName}</td>
                 {(localStorage.getItem("role") === "ROLE_ADMIN") ? 
                     <td>
-                        <Button onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
-                        <Button onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
+                        <Button style={{marginRight: "1%"}} onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
+                        <Button style={{marginRight: "1%"}} onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
+                        <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}><Button >Book</Button></Link>
                     </td>
                 : (localStorage.getItem("role") === "ROLE_CLIENT") ? 
                     <td>

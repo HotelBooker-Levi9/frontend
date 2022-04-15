@@ -14,10 +14,6 @@ export default observer(function Cart() {
 
     useEffect(() => {
         getResFromCart()
-        // for(let res in cartResList) {
-        //     if(res.
-
-        // }
     }, [getResFromCart, emptyCart, shop, cartResList])
 
 

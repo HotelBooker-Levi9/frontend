@@ -76,7 +76,6 @@ export default class ReservationStore {
                             && res.reservation.price == cartRes.reservation.reservation.price) {
                                 cartRes.queantity += 1;
                                 added = true
-                                // break;
                             }
                     })
                     if(!added) {
@@ -86,8 +85,6 @@ export default class ReservationStore {
                         this.cartResList.push(resToCart)
                     }                        
                 })
-
-                // this.cartResList = toJS(list);
             })
         } catch (error) {
             console.log(error);

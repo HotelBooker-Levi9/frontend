@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { ReservationWithArrangementModel } from "../../model/ReservationWithArrangementModel";
 import { useStore } from "../../store/store";
 import Reservation from "./Reservation";
+import ReservationWithoutQuantity from "./ReservationWithoutQuantity";
 
 
 export default observer(function Reservations() {
@@ -32,7 +33,7 @@ export default observer(function Reservations() {
                     </thead>
                     <tbody>
                         {(reservationWithHotelInfoList.length > 0) ? reservationWithHotelInfoList.map((reservation, i) => {
-                            // return <Reservation reservation={reservation} reservationId={reservation.reservation.id} key={i} />
+                            return <ReservationWithoutQuantity reservation={reservation} reservationId={reservation.reservation.id} key={i} />
                         }) : null}
                     </tbody>
             </table>
