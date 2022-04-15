@@ -8,17 +8,18 @@ import Reservation from "../Reservations/Reservation";
 export default observer(function Cart() {
 
     const {reservationStore} = useStore();
-    const {getResFromCart, emptyCart, cartResList} = reservationStore;
+    const {getResFromCart, emptyCart, shop, cartResList} = reservationStore;
 
     useEffect(() => {
         if(cartResList.length === 0) getResFromCart()
-    }, [getResFromCart, emptyCart, cartResList])
+    }, [getResFromCart, emptyCart, shop, cartResList])
 
 
     return (
         <>
             <div>
-                <Button style={{float: "right", marginBottom: "2%"}} onClick={() => {emptyCart()}}>Empty cart</Button>
+                <Button style={{float: "right", marginBottom: "2%", marginLeft: "1%"}} onClick={() => {shop()}}>Shop</Button>
+                <Button style={{float: "right", marginBottom: "2%"}} onClick={() => {emptyCart()}}>Empty cart</Button>                
             </div>
             <table className="table">
                 <thead className="thead-dark">

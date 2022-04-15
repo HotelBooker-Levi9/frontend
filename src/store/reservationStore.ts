@@ -79,4 +79,12 @@ export default class ReservationStore {
             console.log(error);
         }
     }
+
+    shop = async() => {
+        try {
+            let response = await cartService.shop(this.cartId);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

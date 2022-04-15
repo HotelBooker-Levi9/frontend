@@ -24,6 +24,8 @@ const cartService = {
     removeFromCart: async (id: number) => await Promise.resolve(requests.del<void>(`http://localhost:8765/carts/removeItem/${id}`)),
 
     emptyCart: async (id: number) => await Promise.resolve(requests.del<void>(`http://localhost:8765/carts/emptyCart/${id}`)),
+
+    shop: async (id: number) => await Promise.resolve(axios.put<void>(`http://localhost:8765/carts/shop/${id}`, {})),
 }
 
 export default cartService;
