@@ -8,11 +8,11 @@ import Reservation from "./Reservation";
 export default observer(function Reservations() {
 
     const {reservationStore} = useStore();
-    const {loadReservationsByCartId, reservationWithHotelInfoList} = reservationStore;
+    const {loadReservationsByCartId, reservationWithHotelInfoList, cartResList} = reservationStore;
 
     useEffect(() => {
         if(reservationWithHotelInfoList.length === 0) loadReservationsByCartId()
-    }, [loadReservationsByCartId, reservationWithHotelInfoList])
+    }, [loadReservationsByCartId, reservationWithHotelInfoList, cartResList])
 
 
     return (
@@ -32,7 +32,7 @@ export default observer(function Reservations() {
                     </thead>
                     <tbody>
                         {(reservationWithHotelInfoList.length > 0) ? reservationWithHotelInfoList.map((reservation, i) => {
-                            return <Reservation reservation={reservation} reservationId={reservation.reservation.id} key={i} />
+                            // return <Reservation reservation={reservation} reservationId={reservation.reservation.id} key={i} />
                         }) : null}
                     </tbody>
             </table>

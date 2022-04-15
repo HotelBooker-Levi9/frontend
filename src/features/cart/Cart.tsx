@@ -2,6 +2,7 @@ import { remove } from "mobx";
 import { observer } from "mobx-react-lite";
 import { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { ReservationWithQuantityModel } from "../../model/ReservationWithQuantityModel";
 import { useStore } from "../../store/store";
 import Reservation from "../Reservations/Reservation";
 
@@ -9,9 +10,14 @@ export default observer(function Cart() {
 
     const {reservationStore} = useStore();
     const {getResFromCart, emptyCart, shop, cartResList} = reservationStore;
+    const [resWithQuantityList, setResWithQuantityList] = useState<ReservationWithQuantityModel[]>([])
 
     useEffect(() => {
-        if(cartResList.length === 0) getResFromCart()
+        getResFromCart()
+        // for(let res in cartResList) {
+        //     if(res.
+
+        // }
     }, [getResFromCart, emptyCart, shop, cartResList])
 
 
@@ -32,11 +38,12 @@ export default observer(function Cart() {
                             <th scope="col">Price</th>
                             <th scope="col">Guests</th>
                             <th scope="col">Canceled</th>
+                            <th scope="col">Quantity</th>
                         </tr>
                     </thead>
                     <tbody>
                         {(cartResList.length > 0) ? cartResList.map((reservation, i) => {
-                            return <Reservation reservation={reservation} reservationId={reservation.reservation.id} key={i} />
+                            return <Reservation reservation={reservation} reservationId={reservation.reservation.reservation.id} key={i} />
                         }) : null}
                     </tbody>
             </table>
