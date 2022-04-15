@@ -18,7 +18,6 @@ export default observer(function Hotel(props: Props) {
 
     const {hotelStore, clientStore} = useStore();
     const {loadHotels, hotelList, setSelectedHotel, deleteHotel} = hotelStore;
-    const {isAuthorized} = clientStore;
 
     useEffect(() => {
         if(hotelList.length === 0) loadHotels()
@@ -37,15 +36,16 @@ export default observer(function Hotel(props: Props) {
                 <td>{props.hotel.capacity}</td>
                 <td>{props.hotel.cityName}</td>
                 <td>{props.hotel.destinationName}</td>
-                { isAuthorized ?
+                {(localStorage.getItem("role") === "ROLE_ADMIN") ? 
                     <td>
                         <Button onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
                         <Button onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
                     </td>
-                : 
+                : (localStorage.getItem("role") === "ROLE_CLIENT") ? 
                     <td>
                         <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}>Book</Link>
                     </td>
+                : null
                 }         
             </tr>
         </>

@@ -8,7 +8,6 @@ export default class ClientStore {
     clientRegistry = new Map<string, ClientModel>();
     clientList: ClientModel[] = []; 
     currentClient: ClientModel | undefined;
-    isAuthorized: boolean = true;
 
 
     registerClient = async (client: ClientModel) => {
@@ -20,11 +19,5 @@ export default class ClientStore {
         } catch (error) {
             console.log(error);
         }
-    } 
-
-    setIsAuthorized = async (authorized: boolean) => {
-        this.isAuthorized = authorized;
-    } 
-
-    
+    }     
 }

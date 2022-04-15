@@ -18,27 +18,39 @@ import cart from '../features/cart/Cart';
 function App() {
 
   const {clientStore} = useStore();
-  const {isAuthorized} = clientStore;
+  localStorage.setItem("role", "ROLE_ADMIN")
  
-  const authorizedRoutes = (<Switch></Switch>)
-
-  const unauthorizedRoutes = (<Switch></Switch>)
-
-
-  return (
-    <>
-        <Header isAuthorized={isAuthorized}/>
-        <div className='body-wrapper'>
-          <Switch> 
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/register' component={Register}/>
-            <Route exact path='/reservations' component={Reservations}/>
-            <Route exact path='/hotels' component={Hotels}/>
+  const adminRoutes = (<Switch>
             <Route exact path='/createHotel' component={CreateHotel}/>
             <Route exact path='/bookReservation' component={BookReservation}></Route>
             <Route exact path='/top10destinations' component={Top10Destinations}/>    
             <Route exact path='/my-cart' component={cart}/>            
-          </Switch>
+            <Route exact path='/register' component={Register}/>
+            <Route exact path='/reservations' component={Reservations}/>
+            <Route exact path='/hotels' component={Hotels}/>
+  </Switch>)
+
+  const clientRoutes = (<Switch>
+            <Route exact path='/bookReservation' component={BookReservation}></Route>
+            <Route exact path='/top10destinations' component={Top10Destinations}/>    
+            <Route exact path='/my-cart' component={cart}/>           
+            <Route exact path='/reservations' component={Reservations}/>
+            <Route exact path='/hotels' component={Hotels}/>
+  </Switch>)
+
+  const unauthorizedRoutes = (<Switch>
+            <Route exact path='/login' component={Login}/>
+            <Route exact path='/register' component={Register}/>
+            <Route exact path='/reservations' component={Reservations}/>
+            <Route exact path='/hotels' component={Hotels}/>
+  </Switch>)
+
+
+  return (
+    <>
+        <Header />
+        <div className='body-wrapper'>
+          {(localStorage.getItem("role") !== "ROLE_ADMIN" && localStorage.getItem("role") !== "ROLE_CLIENT") ? unauthorizedRoutes : (localStorage.getItem("role") === "ROLE_ADMIN") ? adminRoutes : clientRoutes}
         </div>
         {/* <Footer /> */}
     </>
