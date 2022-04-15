@@ -7,7 +7,7 @@ interface Props {
     isAuthorized: boolean;
 }
 
-export default function Header({isAuthorized}: Props) {
+export default function Header() {
 
 
     return (
@@ -37,14 +37,15 @@ export default function Header({isAuthorized}: Props) {
                                     <img src={profileLogo} />
                                 </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href="/my-account">My Account</Dropdown.Item>
-                                    <Dropdown.Item href="/reservations">My reservations</Dropdown.Item>
-                                    {isAuthorized ?
-                                        <Dropdown.Item href="/createHotel">Create new hotel</Dropdown.Item>
-                                    : null}
+                                <Dropdown.Menu>    
+                                    {(localStorage.getItem("role") !== "ROLE_ADMIN" && localStorage.getItem("role") !== "ROLE_CLIENT") ? <Dropdown.Item href="/login">Log in</Dropdown.Item> : null}
+                                    {(localStorage.getItem("role") !== "ROLE_ADMIN" && localStorage.getItem("role") !== "ROLE_CLIENT") ? <Dropdown.Item href="/register">Register</Dropdown.Item> : null}
+                                    {(localStorage.getItem("role") === "ROLE_CLIENT" || localStorage.getItem("role") === "ROLE_ADMIN") ? <Dropdown.Item href="/my-account">My account</Dropdown.Item> : null}
+                                    {(localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_CLIENT") ? <Dropdown.Item href="/my-cart">My cart</Dropdown.Item> : null}
+                                    {(localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_CLIENT") ? <Dropdown.Item href="/reservations">My reservations</Dropdown.Item> : null}
+                                    {(localStorage.getItem("role") === "ROLE_ADMIN") ? <Dropdown.Item href="/createHotel">Create new hotel</Dropdown.Item> : null}
                                     <Dropdown.Divider />
-                                    <Dropdown.Item href="/" style={{backgroundColor: "rgb(255,69,0)"}}>Logout</Dropdown.Item>
+                                    {(localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_CLIENT") ? <Dropdown.Item href="/" style={{backgroundColor: "rgb(255,69,0)"}}>Logout</Dropdown.Item> : null}
                                 </Dropdown.Menu>
                             </Dropdown>
                         </li>

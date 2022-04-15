@@ -1,22 +1,26 @@
+import { remove } from "mobx";
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
-import { ReservationWithArrangementModel } from "../../model/ReservationWithArrangementModel";
+import { useState, useEffect } from "react";
+import { Button } from "react-bootstrap";
 import { useStore } from "../../store/store";
-import Reservation from "./Reservation";
+import Reservation from "../Reservations/Reservation";
 
-
-export default observer(function Reservations() {
+export default observer(function Cart() {
 
     const {reservationStore} = useStore();
-    const {loadReservationsByCartId, reservationWithHotelInfoList} = reservationStore;
+    const {getResFromCart, emptyCart, shop, cartResList} = reservationStore;
 
     useEffect(() => {
-        if(reservationWithHotelInfoList.length === 0) loadReservationsByCartId()
-    }, [loadReservationsByCartId, reservationWithHotelInfoList])
+        if(cartResList.length === 0) getResFromCart()
+    }, [getResFromCart, emptyCart, shop, cartResList])
 
 
     return (
         <>
+            <div>
+                <Button style={{float: "right", marginBottom: "2%", marginLeft: "1%"}} onClick={() => {shop()}}>Shop</Button>
+                <Button style={{float: "right", marginBottom: "2%"}} onClick={() => {emptyCart()}}>Empty cart</Button>                
+            </div>
             <table className="table">
                 <thead className="thead-dark">
                         <tr>
@@ -31,7 +35,7 @@ export default observer(function Reservations() {
                         </tr>
                     </thead>
                     <tbody>
-                        {(reservationWithHotelInfoList.length > 0) ? reservationWithHotelInfoList.map((reservation, i) => {
+                        {(cartResList.length > 0) ? cartResList.map((reservation, i) => {
                             return <Reservation reservation={reservation} reservationId={reservation.reservation.id} key={i} />
                         }) : null}
                     </tbody>
