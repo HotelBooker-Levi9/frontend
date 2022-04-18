@@ -6,6 +6,7 @@ import { SearchHotelModel } from "../../model/SearchHotel";
 import { useStore } from "../../store/store";
 import EditHotel from "../Hotels/EditHotel";
 import Hotel from "../Hotels/Hotel";
+import HotelTop10 from "../Hotels/HotelTop10";
 import Search from "../Hotels/Search";
 
 export default observer(function Top10Destinations() {
@@ -49,7 +50,7 @@ export default observer(function Top10Destinations() {
                     </thead>
                     <tbody>
                         {(top10List.length > 0) ? top10List.map((hotel, i) => {
-                            return <Hotel showEdit={showEdit} openEdit={openEdit}  hotel={hotel} hotelId={hotel.id} key={i} />
+                            return <HotelTop10 showEdit={showEdit} openEdit={openEdit}  hotel={hotel} hotelId={hotel.id} key={i} />
                         }) : null}
                     </tbody>
             </table>

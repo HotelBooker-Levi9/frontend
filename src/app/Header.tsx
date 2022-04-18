@@ -20,9 +20,6 @@ export default function Header() {
 
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className="nav-item active">
-                            <Link className="nav-link" to="#">HotelBooker</Link>
-                        </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/top10destinations">Top 10 destinations</Link>
                         </li>
@@ -40,7 +37,6 @@ export default function Header() {
                                 <Dropdown.Menu>    
                                     {(localStorage.getItem("role") !== "ROLE_ADMIN" && localStorage.getItem("role") !== "ROLE_CLIENT") ? <Dropdown.Item href="/login">Log in</Dropdown.Item> : null}
                                     {(localStorage.getItem("role") !== "ROLE_ADMIN" && localStorage.getItem("role") !== "ROLE_CLIENT") ? <Dropdown.Item href="/register">Register</Dropdown.Item> : null}
-                                    {(localStorage.getItem("role") === "ROLE_CLIENT" || localStorage.getItem("role") === "ROLE_ADMIN") ? <Dropdown.Item href="/my-account">My account</Dropdown.Item> : null}
                                     {(localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_CLIENT") ? <Dropdown.Item href="/my-cart">My cart</Dropdown.Item> : null}
                                     {(localStorage.getItem("role") === "ROLE_ADMIN" || localStorage.getItem("role") === "ROLE_CLIENT") ? <Dropdown.Item href="/reservations">My reservations</Dropdown.Item> : null}
                                     {(localStorage.getItem("role") === "ROLE_ADMIN") ? <Dropdown.Item href="/createHotel">Create new hotel</Dropdown.Item> : null}

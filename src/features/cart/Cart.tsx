@@ -33,7 +33,6 @@ export default observer(function Cart() {
                             <th scope="col">Check out</th>
                             <th scope="col">Price</th>
                             <th scope="col">Guests</th>
-                            <th scope="col">Canceled</th>
                             <th scope="col">Quantity</th>
                         </tr>
                     </thead>

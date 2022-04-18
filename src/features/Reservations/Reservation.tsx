@@ -65,8 +65,7 @@ export default observer(function Reservation({reservation, reservationId}: Props
                 <td>{formatDate(reservation.reservation.reservation.checkOutDate)}</td>
                 <td>{reservation.reservation.reservation.price}</td>
                 <td>{reservation.reservation.reservation.guestNumber}</td>
-                <td>{reservation.reservation.reservation.isCanceled}</td>
-                <td>{reservation.queantity}</td>
+                <td>x <big><b>{reservation.queantity}</b></big></td>
                 <td>
                     <Button style={{marginRight: "1%"}} onClick={() => {add(reservation.reservation.reservation)}}>+</Button>
                     <Button onClick={() => {remove(reservation.reservation.reservation); getResFromCart()}}>-</Button>

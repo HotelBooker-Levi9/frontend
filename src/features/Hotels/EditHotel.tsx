@@ -110,7 +110,7 @@ export default observer(function EditHotel(props: Props) {
                         
                     </select>
                 </div>
-                <Button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Save</Button>
+                <Button style={{marginRight: "2px"}} type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Save</Button>
                 <Button onClick={() => props.closeEdit()}>Close</Button>
             </form>
         </div>

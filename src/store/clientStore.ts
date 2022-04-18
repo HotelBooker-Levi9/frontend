@@ -15,6 +15,9 @@ export default class ClientStore {
         console.log(client);
         try {
             let response = await clientService.register(client);
+            runInAction(() => {
+                window.location.replace('/hotels');
+            })
             console.log(response);
         } catch (error) {
             console.log(error);
