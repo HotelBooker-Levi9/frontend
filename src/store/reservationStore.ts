@@ -5,6 +5,7 @@ import { ReservationWithCartModel } from "../model/ReservationWithCartModel";
 import { ReservationWithQuantityModel } from "../model/ReservationWithQuantityModel";
 import cartService from "../service/cartService";
 import reservationService from "../service/reservationService";
+import { useHistory } from "react-router-dom";
 
 
 export default class ReservationStore {
@@ -45,18 +46,23 @@ export default class ReservationStore {
         }
     }
 
-
     addToCart = async(reservation: ReservationWithCartModel) => {
         try {
             let response = await cartService.addToCart(reservation);
+            runInAction(() => {
+                window.location.replace('/my-cart');
+            })
         } catch (error) {
-            console.log(error);
+            alert("There is not enough space in hotel")
         }
     }
 
     removeReservation = async(resId: number) => {
         try {
             let response = await cartService.removeFromCart(resId);
+            runInAction(() => {
+                window.location.reload();
+            })
         } catch (error) {
             console.log(error);
         }
@@ -94,6 +100,9 @@ export default class ReservationStore {
     emptyCart = async() => {
         try {
             let response = await cartService.emptyCart(this.cartId);
+            runInAction(() => {
+                window.location.reload();
+            })
         } catch (error) {
             console.log(error);
         }
@@ -102,6 +111,21 @@ export default class ReservationStore {
     shop = async() => {
         try {
             let response = await cartService.shop(this.cartId);
+            runInAction(() => {
+                alert("You have shoped successfully")
+                window.location.replace('/reservations');
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    cancelReservation = async (id: number) => { 
+        try {
+            const list = await reservationService.cancel(id);
+            runInAction(() => {
+                window.location.reload();
+            })
         } catch (error) {
             console.log(error);
         }

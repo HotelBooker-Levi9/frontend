@@ -22,7 +22,7 @@ export default observer(function ReservationWithoutQuantity({reservation, reserv
 
     const {reservationStore} = useStore();
 
-    const {loadReservationsByCartId, reservationList, cartResList} = reservationStore;
+    const {loadReservationsByCartId, reservationList, cartResList, cancelReservation} = reservationStore;
 
     useEffect(() => {
         if(reservationList.length === 0) loadReservationsByCartId()
@@ -32,6 +32,11 @@ export default observer(function ReservationWithoutQuantity({reservation, reserv
     function formatDate(date: Date) {
         Moment.locale('en');
         return(Moment(date).format('DD MMM YYYY'))
+    }
+
+    function cancel(id: number) {
+        Moment.locale('en');
+        cancelReservation(id)
     }
 
     return (
@@ -44,7 +49,11 @@ export default observer(function ReservationWithoutQuantity({reservation, reserv
                 <td>{formatDate(reservation.reservation.checkOutDate)}</td>
                 <td>{reservation.reservation.price}</td>
                 <td>{reservation.reservation.guestNumber}</td>
-                <td>{reservation.reservation.isCanceled}</td>
+                {reservation.reservation.isCanceled === false ?
+                    <td>
+                        <Button onClick={() => {cancel(reservation.reservation.id)}}>Cancel</Button>
+                    </td>
+                : <td><i>Canceled</i></td>}
             </tr>
         </>
     )

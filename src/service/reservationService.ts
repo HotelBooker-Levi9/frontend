@@ -22,6 +22,8 @@ const reservationService = {
 
     getByCartId: async (id: number) => await Promise.resolve(requests.get<ReservationWithArrangementModel[]>(`http://localhost:8765/reservations/cartId/${id}`)),
 
+    cancel: async (id: number) => await Promise.resolve(requests.put<void>(`http://localhost:8765/reservations/${id}`, {})),
+
 }
 
 export default reservationService;

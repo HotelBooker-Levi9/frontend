@@ -108,6 +108,9 @@ export default class HotelStore {
         try {
             let response = await hotelService.updateHotel(hotel);
             console.log(response);
+            runInAction(() => {
+                window.location.reload()
+            })
         } catch (error) {
             console.log(error);
         }
@@ -125,18 +128,25 @@ export default class HotelStore {
     createNewHotel = async (hotel: EditHotelModel) => {
         try {
             let response = await hotelService.createHotel(hotel);
+            runInAction(() => {
+                window.location.replace('/hotels');
+            })
             console.log(response);
         } catch (error) {
             console.log(error);
         }
     }
 
-
     deleteHotel = async (id: number) => {
         try {
             let response = await hotelService.deleteHotel(id);
+            runInAction(() => {
+                alert("You have successfully deleted the hotel")
+                window.location.reload()
+            })
         } catch (error) {
             console.log(error);
+            alert("You can not delete a hotel which has future reservations")
         }
     }
     
