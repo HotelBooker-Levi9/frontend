@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction, toJS } from "mobx";
 import { ReservationModel } from "../model/ReservationModel";
 import { ReservationWithArrangementModel } from "../model/ReservationWithArrangementModel";
 import { ReservationWithCartModel } from "../model/ReservationWithCartModel";
+import { ReservationWithQuantityModel } from "../model/ReservationWithQuantityModel";
 import cartService from "../service/cartService";
 import reservationService from "../service/reservationService";
 
@@ -11,7 +12,8 @@ export default class ReservationStore {
     reservationList: ReservationModel[] = []; 
     reservationWithHotelInfoList: ReservationWithArrangementModel[] = [];
     cartId: number = 1;
-    cartResList: ReservationWithArrangementModel[] = []; 
+    // cartResList: ReservationWithArrangementModel[] = [];
+    cartResList: ReservationWithQuantityModel[] = []; 
 
     constructor() {
         makeAutoObservable(this)
@@ -23,7 +25,7 @@ export default class ReservationStore {
             const list = await reservationService.getAll();
             
             runInAction(() => {
-                this.reservationList = list;
+                this.reservationList = toJS(list);
             })
         } catch (error) {
             console.log(error);
@@ -64,8 +66,25 @@ export default class ReservationStore {
         try {
             const list = [... await cartService.getResFromCart(this.cartId)];
 
-            runInAction(() => {
-                this.cartResList = toJS(list);
+            runInAction(() => {                           
+                let finalList = []   
+                list.forEach(res => {
+                    let added = false;
+                    this.cartResList.forEach(cartRes =>{
+                        if(res.reservation.checkInDate == cartRes.reservation.reservation.checkInDate && res.reservation.checkOutDate == cartRes.reservation.reservation.checkOutDate 
+                            && res.reservation.guestNumber == cartRes.reservation.reservation.guestNumber && res.reservation.hotelId == cartRes.reservation.reservation.hotelId 
+                            && res.reservation.price == cartRes.reservation.reservation.price) {
+                                cartRes.queantity += 1;
+                                added = true
+                            }
+                    })
+                    if(!added) {
+                        let resToCart = new ReservationWithQuantityModel();
+                        resToCart.reservation = res;
+                        resToCart.queantity = 1;
+                        this.cartResList.push(resToCart)
+                    }                        
+                })
             })
         } catch (error) {
             console.log(error);

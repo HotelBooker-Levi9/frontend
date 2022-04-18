@@ -43,6 +43,7 @@ function App() {
             <Route exact path='/register' component={Register}/>
             <Route exact path='/reservations' component={Reservations}/>
             <Route exact path='/hotels' component={Hotels}/>
+            <Route exact path='/top10destinations' component={Top10Destinations}/> 
   </Switch>)
 
 
