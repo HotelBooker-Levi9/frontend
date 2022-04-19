@@ -21,7 +21,7 @@ export default function Header() {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link" to="/all-users">All users</Link>
+                            <Link className="nav-link" to="/all-users">Users</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/top10destinations">Top 10 destinations</Link>
