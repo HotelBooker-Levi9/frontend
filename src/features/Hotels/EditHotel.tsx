@@ -100,8 +100,8 @@ export default observer(function EditHotel(props: Props) {
                     <label >Capacity</label>
                     <input type="text" className="form-control" value={editHotelValues.capacity} name='capacity' onChange={handleInputChange} />
                 </div>
-                <div>
-                    <label>City: </label>
+                <div style={{marginTop: "10px"}}>
+                    <label style={{marginRight: "10px"}}>City: </label>
                     <select defaultValue={citiesList.find(x => x.name === selectedHotel?.cityName)?.name} onChange={handleSelectCityChange}>
                         <option>Select City</option>
                         {citiesList.map(city => {
@@ -110,8 +110,8 @@ export default observer(function EditHotel(props: Props) {
                         
                     </select>
                 </div>
-                <Button style={{marginRight: "2px"}} type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Save</Button>
-                <Button onClick={() => props.closeEdit()}>Close</Button>
+                <Button style={{margin: "7px", backgroundColor: "rgb(6, 137, 6)"}} type="submit" className="btn btn-primary" onSubmit={handleSubmit} >Save</Button>
+                <Button onClick={() => props.closeEdit()} style={{backgroundColor: "rgb(180, 35, 4)"}}>Close</Button>
             </form>
         </div>
     )

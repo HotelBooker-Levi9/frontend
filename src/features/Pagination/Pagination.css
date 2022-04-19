@@ -1,0 +1,33 @@
+.new {
+    width:100%;
+    float:left;
+    margin-top:10px;
+    text-align:center;
+    border-top:1px dotted #adc2e7;
+    padding-top:5px
+}
+
+.new ul {
+    margin:0 auto;
+    display: inline-block
+}
+
+.new ul li {
+    display:inline-block;
+    border-right:1px solid #8dcfda
+}
+
+.new ul li.last {
+    border-right:0
+}
+
+.new ul li a {
+    padding:0 10px;
+    display:block;
+    color:#058d3e;
+    background-color: "lightblue"
+}
+    
+.new ul li link:hover {
+    text-decoration: underline
+}

@@ -29,7 +29,7 @@ export default observer(function Hotel(props: Props) {
     
     return (
         <>
-            <tr>
+            <tr style={{backgroundColor: "rgb(234, 234, 234)"}}>
                 <th>{props.hotel.name}</th>
                 <td>{props.hotel.description}</td>
                 <td>{props.hotel.pricePerDay}</td>
@@ -38,13 +38,13 @@ export default observer(function Hotel(props: Props) {
                 <td>{props.hotel.destinationName}</td>
                 {(localStorage.getItem("role") === "ROLE_ADMIN") ? 
                     <td>
-                        <Button style={{marginRight: "1%"}} onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
-                        <Button style={{marginRight: "1%"}} onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
-                        <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}><Button >Book</Button></Link>
+                        <Button style={{marginRight: "1%", backgroundColor: "rgb(6, 137, 6)"}} onClick={() => {props.openEdit(); setSelectedHotel(props.hotel);}}>Edit</Button>
+                        <Button style={{marginRight: "1%", backgroundColor: "rgb(180, 35, 4)"}} onClick={() => {deleteHotelFunction(props.hotel.id)}}>Delete</Button>
+                        <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}><Button style={{backgroundColor: "rgb(6, 93, 137)"}}>Book</Button></Link>
                     </td>
                 : (localStorage.getItem("role") === "ROLE_CLIENT") ? 
                     <td>
-                        <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}>Book</Link>
+                        <Link to="/bookReservation" onClick={() => {setSelectedHotel(props.hotel)}}><Button style={{backgroundColor: "rgb(6, 93, 137)"}}>Book</Button></Link>
                     </td>
                 : null
                 }         
