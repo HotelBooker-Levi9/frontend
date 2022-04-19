@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { ClientModel } from "../model/ClientModel";
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 const responseBody = <T> (response: AxiosResponse<T>) => response.data;
 
@@ -14,9 +15,9 @@ const requests = {
 
 const clientService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('http://localhost:8765/clients')),
+    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('http://localhost:8765/clients/all')),
 
-    block: async (id : number) => await Promise.resolve(requests.put<void>(`http://localhost:8765/block/${id}`, {})),
+    block: async (id : number) => await Promise.resolve(requests.put<void>(`http://localhost:8765/clients/block/${id}`, {})),
 
     //register: async (client: ClientModel) => await Promise.resolve(requests.post<void>('/clients/register', client)),
 

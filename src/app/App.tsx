@@ -13,6 +13,7 @@ import CreateHotel from '../features/Hotels/CreateHotel';
 import BookReservation from '../features/Reservations/BookReservation';
 import Top10Destinations from '../features/Destinations/Top10Destinations';
 import cart from '../features/cart/Cart';
+import AllUsers from '../features/Users/AllUsers';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route exact path='/register' component={Register}/>
             <Route exact path='/reservations' component={Reservations}/>
             <Route exact path='/hotels' component={Hotels}/>
+            <Route exact path='/all-users' component={AllUsers}/>
   </Switch>)
 
   const clientRoutes = (<Switch>

@@ -20,7 +20,7 @@ export default observer(function Client({client, clientId}: Props) {
 
     useEffect(() => {
         getAll()
-    })
+    }, [clientList, getAll])
     
     return (
         <>
@@ -30,7 +30,7 @@ export default observer(function Client({client, clientId}: Props) {
                 <td>{client.surname}</td>
                 <td>{client.email}</td>
                 <td>
-                    {!client.isBlocked ?
+                    {client.isBlocked === false ?
                         <Button onClick={() => {blockClient(client.id)}}>Block</Button>
                      :  <i>Blocked</i> }
                 </td>        
