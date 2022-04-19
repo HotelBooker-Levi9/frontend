@@ -67,8 +67,8 @@ export default observer(function Reservation({reservation, reservationId}: Props
                 <td>{reservation.reservation.reservation.guestNumber}</td>
                 <td>x <big><b>{reservation.queantity}</b></big></td>
                 <td>
-                    <Button style={{marginRight: "1%"}} onClick={() => {add(reservation.reservation.reservation)}}>+</Button>
-                    <Button onClick={() => {remove(reservation.reservation.reservation); getResFromCart()}}>-</Button>
+                    <Button style={{marginRight: "1%", backgroundColor: "rgb(6, 137, 6)"}} onClick={() => {add(reservation.reservation.reservation)}}>+</Button>
+                    <Button onClick={() => {remove(reservation.reservation.reservation); getResFromCart()}} style={{backgroundColor: "rgb(180, 35, 4)", marginLeft: "5px"}}>-</Button>
                 </td>
             </tr>
         </>

@@ -1,14 +1,19 @@
 import moment from "moment";
 import { ChangeEvent, useState } from "react";
-import searchImage from "../../img/search.png";
+import searchImage from "../../img/searchImage3.png";
 import { SearchHotelModel } from "../../model/SearchHotel";
 import { useStore } from "../../store/store";
 import DatePicker from "react-datepicker";
 import { observer } from "mobx-react-lite";
 import { Col, Container, Row } from "react-bootstrap";
 import './Search.css'
+import { runInAction } from "mobx";
 
-export default observer(function Search() {
+interface Props {
+    changeToggle: () => void;
+}
+
+export default observer(function Search({changeToggle}: Props) {
 
     const {hotelStore} = useStore();
     const {searchHotelsByParams, loadHotels} = hotelStore;
@@ -48,6 +53,9 @@ export default observer(function Search() {
         }
 
         searchHotelsByParams(searchHotel);
+        runInAction(() => {
+            changeToggle();
+        })
     }
 
     function handleInputChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -60,7 +68,7 @@ export default observer(function Search() {
     }
 
     return (
-        <div className="input-group; search-position" style={{width: "90%"}} >
+        <div className="input-group; search-position" style={{width: "90%", margin: "auto"}} >
             <form onSubmit={handleSubmit} className="mx-1 mx-md-4">
                 <Container>
                 <div className="search-rows">
@@ -111,9 +119,9 @@ export default observer(function Search() {
                         </div>
                     </Col>                   
                     <Col>
-                    <button title="Search" type="submit" className="btn btn-primary" onSubmit={handleSubmit}>
-                        <img className="fas fa-search" src={searchImage} style={{maxHeight: "35px", maxWidth: "35px"}}></img>
-                    </button>
+                        <button title="Search" type="submit" className="btn btn-primary" onSubmit={handleSubmit} style={{backgroundColor: "rgb(41, 149, 8)", alignItems: "left"}}>
+                            <img className="fas fa-search" src={searchImage} style={{maxHeight: "35px", maxWidth: "35px"}} ></img>
+                        </button>
                     </Col>
                 </Row>
                 <Row>

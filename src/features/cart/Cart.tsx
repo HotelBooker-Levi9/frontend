@@ -20,8 +20,8 @@ export default observer(function Cart() {
     return (
         <>
             <div>
-                <Button style={{float: "right", marginBottom: "2%", marginLeft: "1%"}} onClick={() => {shop()}}>Shop</Button>
-                <Button style={{float: "right", marginBottom: "2%"}} onClick={() => {emptyCart()}}>Empty cart</Button>                
+                <Button style={{float: "right", marginBottom: "2%", marginLeft: "1%", backgroundColor: "rgb(53, 182, 53)"}} onClick={() => {shop()}}>Shop</Button>
+                <Button style={{float: "right", marginBottom: "2%", backgroundColor: "rgb(120, 99, 225)"}} onClick={() => {emptyCart()}}>Empty cart</Button>                
             </div>
             <table className="table">
                 <thead className="thead-dark">
