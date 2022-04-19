@@ -5,6 +5,7 @@ export interface ClientModel {
     surname: string;
     email: string;
     password: string;
+    isBlocked: boolean;
 }
 
 export class ClientModel implements ClientModel {
@@ -15,6 +16,7 @@ export class ClientModel implements ClientModel {
         this.surname = client.surname;
         this.email = client.email;
         this.password = client.password;
+        this.isBlocked = client.isBlocked;
     }
 }
 

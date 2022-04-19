@@ -1,4 +1,4 @@
-import { runInAction } from "mobx";
+import { runInAction, toJS } from "mobx";
 import { ClientModel } from "../model/ClientModel";
 import clientService from "../service/clientService";
 
@@ -23,4 +23,26 @@ export default class ClientStore {
             console.log(error);
         }
     }     
+
+    getAll = async() => {
+        try {
+            let response = [ ... await clientService.getAll()];
+            runInAction(() => {
+                this.clientList = toJS(response);
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    blockClient = async(id: number) => {
+        try {
+            let response = await clientService.block(id);
+            runInAction(() => {
+                window.location.reload();
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
