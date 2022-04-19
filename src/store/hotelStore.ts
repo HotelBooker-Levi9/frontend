@@ -18,6 +18,7 @@ export default class HotelStore {
     top10List: HotelModel[] = [];
     citiesList: CityModel[] = [];
     selectedHotel: HotelModel | undefined;
+    numberOfHotels: number = 0;
     
 
     constructor() {
@@ -82,6 +83,7 @@ export default class HotelStore {
 
                 runInAction(() => {
                     this.hotelList = toJS(response.data);
+                    this.getNumberOfHotels();
                 })
             }
 
@@ -148,6 +150,15 @@ export default class HotelStore {
             console.log(error);
             alert("You can not delete a hotel which has future reservations")
         }
+    }
+
+
+    getNumberOfHotels = async() => {
+        this.numberOfHotels = this.hotelList.length;
+    }
+
+    getPostPerPage = async (indexOfFirst: number, indexOfLast: number) => {
+        this.hotelList = this.hotelList.slice(indexOfFirst, indexOfLast);
     }
     
         

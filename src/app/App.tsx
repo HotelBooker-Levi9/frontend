@@ -49,11 +49,13 @@ function App() {
 
   return (
     <>
+    <div style={{backgroundColor: "rgb(249, 249, 249)"}}>
         <Header />
-        <div className='body-wrapper'>
+        <div className='body-wrapper' >
           {(localStorage.getItem("role") !== "ROLE_ADMIN" && localStorage.getItem("role") !== "ROLE_CLIENT") ? unauthorizedRoutes : (localStorage.getItem("role") === "ROLE_ADMIN") ? adminRoutes : clientRoutes}
         </div>
-        {/* <Footer /> */}
+        {/* <Footer />  */}
+    </div>
     </>
   );
 }

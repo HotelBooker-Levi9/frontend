@@ -76,7 +76,7 @@ export default function BookReservation(props: Props) {
     }
 
     return(
-        <div>
+        <div >
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label>Price per day</label>
@@ -94,8 +94,8 @@ export default function BookReservation(props: Props) {
                     <label className="form-label" htmlFor="form1">CheckOut date</label>
                     <DatePicker selected={selectedCheckOutDate} onChange={(date) => setSelectedCheckOutDate(date)}/>  
                 </div>
-                <Button type="submit" className="btn btn-primary" onSubmit={handleSubmit}>Add to cart</Button>
-                <Link to="/hotels">Close</Link>
+                <Button type="submit" className="btn btn-primary" onSubmit={handleSubmit} style={{backgroundColor: "rgb(6, 137, 6)", marginTop: "10px"}}>Add to cart</Button>
+                <Link to="/hotels"><Button style={{backgroundColor: "rgb(180, 35, 4)", marginTop: "10px", marginLeft: "5px"}}>Cancel</Button></Link>
             </form>
         </div>
     );
