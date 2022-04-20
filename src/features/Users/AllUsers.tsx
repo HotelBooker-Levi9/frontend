@@ -18,7 +18,7 @@ export default observer(function AllUsers() {
 
     useEffect(() => {
         getAll()
-    })
+    }, [clientList, getAll])
     
 
     return (
