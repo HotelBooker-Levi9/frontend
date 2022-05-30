@@ -22,11 +22,12 @@ const requests = {
 
 let searchHotelsList: HotelModel[];
 
+
 const hotelService = {
 
-    getAll: async () => await Promise.resolve(requests.get<HotelModel[]>('http://localhost:8765/hotels/all')),
+    getAll: async () => await Promise.resolve(requests.get<HotelModel[]>(process.env.REACT_APP_API_URL + '/hotels/all')),
 
-    top10: async () => await Promise.resolve(requests.get<HotelModel[]>('http://localhost:8765/hotels/top10')),
+    top10: async () => await Promise.resolve(requests.get<HotelModel[]>(process.env.REACT_APP_API_URL + '/hotels/top10')),
     
     getSearchHotels() {
         return searchHotelsList;
@@ -35,17 +36,17 @@ const hotelService = {
     searchHotelsByParameters: async (hotelName: string, pricePerDay: number, cityName: string, destinationName: string, checkInDate: string, 
             checkOutDate: string, guestNum: number) => { 
                 
-                return await axios.get<HotelModel[]>('http://localhost:8765/hotels/searchParams', {
+                return await axios.get<HotelModel[]>(process.env.REACT_APP_API_URL + '/hotels/searchParams', {
         params : {hotelName: hotelName, pricePerDay: pricePerDay, cityName: cityName, destinationName: destinationName, 
             checkInDate: checkInDate, checkOutDate: checkOutDate, guestNum: guestNum}
         })
         },
 
-    updateHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.put<void>('http://localhost:8765/hotels/', hotel)),
+    updateHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.put<void>(process.env.REACT_APP_API_URL + '/hotels/', hotel)),
 
-    createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>('http://localhost:8765/hotels/addHotel', hotel)),
+    createHotel: async (hotel: EditHotelModel) => await Promise.resolve(requests.post<void>(process.env.REACT_APP_API_URL + '/hotels/addHotel', hotel)),
 
-    deleteHotel: async (id: number) => await Promise.resolve(axios.put<void>(`http://localhost:8765/hotels/${id}`)),
+    deleteHotel: async (id: number) => await Promise.resolve(axios.put<void>(process.env.REACT_APP_API_URL + `/hotels/${id}`)),
 }
 
 export default hotelService;

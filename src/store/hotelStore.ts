@@ -46,14 +46,14 @@ export default class HotelStore {
         try {
             const list = [... await hotelService.top10()];
 
-            runInAction(() => {
+            //runInAction(() => {
                 this.top10List = toJS(list);
                 console.log(this.top10List);
 
                 if(!this.selectedHotel) {
                     this.selectedHotel = this.top10List.at(1);
                 }
-            })
+            //})
         } catch (error) {
             console.log(error);
         }

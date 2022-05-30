@@ -18,7 +18,8 @@ export default observer(function Top10Destinations() {
     const [selectedHotel, setSelectedHotel] = useState<HotelModel>();
 
     useEffect(() => {
-        top10Destinations()
+        
+        if(top10List.length === 0) top10Destinations()
 
         if(citiesList.length === 0) loadCities()
     }, [top10Destinations, top10List])
@@ -50,7 +51,7 @@ export default observer(function Top10Destinations() {
                     </thead>
                     <tbody>
                         {(top10List.length > 0) ? top10List.map((hotel, i) => {
-                            return <HotelTop10 showEdit={showEdit} openEdit={openEdit}  hotel={hotel} hotelId={hotel.id} key={i} />
+                            return <HotelTop10 hotel={hotel} key={i} />
                         }) : null}
                     </tbody>
             </table>

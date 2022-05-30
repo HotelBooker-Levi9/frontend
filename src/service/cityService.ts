@@ -15,7 +15,7 @@ const requests = {
 const cityService = {
 
     //mora putanja biti cities/ inace baca 405
-    getAll: async () => await Promise.resolve(requests.get<CityModel[]>('http://localhost:8765/cities/')),
+    getAll: async () => await Promise.resolve(requests.get<CityModel[]>(process.env.REACT_APP_API_URL + '/cities/')),
 
 }
 
