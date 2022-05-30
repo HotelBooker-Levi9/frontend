@@ -17,15 +17,15 @@ const requests = {
 
 const cartService = {
 
-    addToCart: async (reservation: ReservationWithCartModel) => await Promise.resolve(requests.post<void>('http://localhost:8765/carts/addItem', reservation)),
+    addToCart: async (reservation: ReservationWithCartModel) => await Promise.resolve(requests.post<void>(process.env.REACT_APP_API_URL + '/carts/addItem', reservation)),
 
-    getResFromCart: async (id: number) => await Promise.resolve(requests.get<ReservationWithArrangementModel[]>(`http://localhost:8765/carts/${id}`)),
+    getResFromCart: async (id: number) => await Promise.resolve(requests.get<ReservationWithArrangementModel[]>(process.env.REACT_APP_API_URL + `/carts/${id}`)),
 
-    removeFromCart: async (id: number) => await Promise.resolve(requests.del<void>(`http://localhost:8765/carts/removeItem/${id}`)),
+    removeFromCart: async (id: number) => await Promise.resolve(requests.del<void>(process.env.REACT_APP_API_URL + `/carts/removeItem/${id}`)),
 
-    emptyCart: async (id: number) => await Promise.resolve(requests.del<void>(`http://localhost:8765/carts/emptyCart/${id}`)),
+    emptyCart: async (id: number) => await Promise.resolve(requests.del<void>(process.env.REACT_APP_API_URL + `/carts/emptyCart/${id}`)),
 
-    shop: async (id: number) => await Promise.resolve(axios.put<void>(`http://localhost:8765/carts/shop/${id}`, {})),
+    shop: async (id: number) => await Promise.resolve(axios.put<void>(process.env.REACT_APP_API_URL + `/carts/shop/${id}`, {})),
 }
 
 export default cartService;

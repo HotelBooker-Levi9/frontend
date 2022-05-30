@@ -15,13 +15,13 @@ const requests = {
 
 const clientService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>('http://localhost:8765/clients/all')),
+    getAll: async () => await Promise.resolve(requests.get<ClientModel[]>(process.env.REACT_APP_API_URL + '/clients/all')),
 
-    block: async (id : number) => await Promise.resolve(requests.put<void>(`http://localhost:8765/clients/block/${id}`, {})),
+    block: async (id : number) => await Promise.resolve(requests.put<void>(process.env.REACT_APP_API_URL + `/clients/block/${id}`, {})),
 
     //register: async (client: ClientModel) => await Promise.resolve(requests.post<void>('/clients/register', client)),
 
-    register: async (client: ClientModel) => await Promise.resolve(axios.post<void>('http://localhost:8765/clients/register', client )
+    register: async (client: ClientModel) => await Promise.resolve(axios.post<void>(process.env.REACT_APP_API_URL + '/clients/register', client )
       .then((response) => {
         console.log("RESPONSE RECEIVED: ", response);
         })

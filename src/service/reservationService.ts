@@ -18,11 +18,11 @@ const requests = {
 
 const reservationService = {
 
-    getAll: async () => await Promise.resolve(requests.get<ReservationModel[]>('http://localhost:8765/reservations')),
+    getAll: async () => await Promise.resolve(requests.get<ReservationModel[]>(process.env.REACT_APP_API_URL + '/reservations')),
 
-    getByCartId: async (id: number) => await Promise.resolve(requests.get<ReservationWithArrangementModel[]>(`http://localhost:8765/reservations/cartId/${id}`)),
+    getByCartId: async (id: number) => await Promise.resolve(requests.get<ReservationWithArrangementModel[]>(process.env.REACT_APP_API_URL + `/reservations/cartId/${id}`)),
 
-    cancel: async (id: number) => await Promise.resolve(requests.put<void>(`http://localhost:8765/reservations/${id}`, {})),
+    cancel: async (id: number) => await Promise.resolve(requests.put<void>(process.env.REACT_APP_API_URL + `/reservations/${id}`, {})),
 
 }
 

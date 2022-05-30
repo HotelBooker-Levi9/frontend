@@ -9,9 +9,6 @@ import { useStore } from "../../store/store";
 
 interface Props {
     hotel: HotelModel;
-    hotelId: number;
-    showEdit: boolean;
-    openEdit: () => void;
 }
 
 export default observer(function HotelTop10(props: Props) {
